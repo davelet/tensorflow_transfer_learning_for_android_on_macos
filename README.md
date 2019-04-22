@@ -53,7 +53,7 @@ python retrain.py --image_dir ~/flower_photos
 
 把生成的tflite文件和第一步的output_labels.txt文件一起复制到 `image_classification/android/app/src/main/assets/` 下面。
 
-找到 `ClassifierFloatMobileNet.java` 文件，复制一份并改名为 `ClassifierFloatInception.java`。修改其中image size XY 都是299（原因见[InceptionV4](#InceptionV4.pdf)）。修改modelPath和LabelPath为上面刚复制过去的文件。
+找到 `ClassifierFloatMobileNet.java` 文件，复制一份并改名为 `ClassifierFloatInception.java`。修改其中image size XY 都是299（原因见[InceptionV4](/InceptionV4.pdf)）。修改modelPath和LabelPath为上面刚复制过去的文件。
 
 修改`ClassifierActivity.java` 中的`classifier`变量初始化为`new ClassifierFloatInception(this)`。
 

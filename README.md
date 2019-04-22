@@ -4,6 +4,12 @@
 
 参考资料：[How to Retrain an Image Classifier for New Categories](https://www.tensorflow.org/hub/tutorials/image_retraining)
 
+## 安卓环境搭建
+
+1. 下载android studio 并安装：https://jingyan.baidu.com/article/20b68a88ff2ca4796cec6232.html
+2. （可选）检验环境：https://developer.android.com/training/basics/firstapp/creating-project
+3. 下载： https://github.com/tensorflow/examples 尝试下面“通过安卓观察效果” 的第一步。
+
 ## 使用inception v3识别花朵
 首先克隆tensorflow-hub库 https://github.com/tensorflow/hub 。
 找到 `tensorflow_hub/pip_package/setup.py` 所在的目录，执行

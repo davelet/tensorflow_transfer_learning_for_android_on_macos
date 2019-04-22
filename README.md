@@ -32,3 +32,35 @@ python retrain.py --image_dir ~/flower_photos
 
 ## 通过安卓观察效果
 
+### 1. 先克隆tensorflow example库
+ https://github.com/tensorflow/examples 。
+
+打开 `lite/examples/image_classification` 目录，用 Android Studio 打开 `Android/app` 目录。Android Studio会自动编译，编译成功后先安装apk到自己手机看一下。
+
+### 2. 生成tflite文件
+
+打开convertor.py文件，编辑它：
+
+- graph_def_file改成上面的pb路径
+- input_arrays改成Placeholder
+- output_arrays改成final_result
+
+原因见[Abo_detection](https://github.com/davelet/ABO-detector#%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E5%BC%A0%E9%87%8F%E8%AE%B0%E5%BD%95)。
+
+执行convertor.py很快就生成converted_model.tflite文件。
+
+### 3. 替换安卓资源
+
+把生成的tflite文件和第一步的output_labels.txt文件一起复制到 `image_classification/android/app/src/main/assets/` 下面。
+
+找到 `ClassifierFloatMobileNet.java` 文件，复制一份并改名为 `ClassifierFloatInception.java`。修改其中image size XY 都是299（原因见[InceptionV4](#InceptionV4.pdf)）。修改modelPath和LabelPath为上面刚复制过去的文件。
+
+修改`ClassifierActivity.java` 中的`classifier`变量初始化为`new ClassifierFloatInception(this)`。
+
+### 4. 重新build
+再次打包安装到手机上可以用手机识别不同花朵的图片试一下。
+ 
+只能识别菊花、蒲公英、向日葵、郁金香、玫瑰。
+
+
+

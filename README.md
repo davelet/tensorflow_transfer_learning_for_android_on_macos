@@ -28,6 +28,8 @@ python retrain.py --image_dir ~/flower_photos
 ```
 对图片的训练就开始了，这个要花一段时间。默认训练4000步。
 
+（会先生成瓶颈文件，根据文件的数据时间难以估计）
+
 训练好以后，会在`/tem/` 目录下生成 `.pb` 文件和 `output_labels.txt` 文件。
 
 ## 通过安卓观察效果
@@ -61,6 +63,14 @@ python retrain.py --image_dir ~/flower_photos
 再次打包安装到手机上可以用手机识别不同花朵的图片试一下。
  
 只能识别菊花、蒲公英、向日葵、郁金香、玫瑰。
+
+## 训练kaggle集
+
+图片分类和对象识别不同的是，对象识别需要标记；而图片分类会把整张图片当成某一个东西。
+
+把[Abo_detection](https://github.com/davelet/ABO-detector#%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E5%BC%A0%E9%87%8F%E8%AE%B0%E5%BD%95)中的水果图片集删掉xml标记数据和mixed多对象文件，把剩下的分成三类分别放进apple/banana/orange目录。重新训练。
+
+因为图片太少，训练会很快结束并且标明识别率高达100%。
 
 
 

@@ -1,0 +1,2 @@
+# tensorflow_transfer_learning_for_android_on_macos
+tensorflow_transfer_learning_for_android_on_macos，Mac下安卓应用的tensorflow迁移学习

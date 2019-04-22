@@ -18,6 +18,10 @@ python setup.py build
 
 python setup.py install
 ```
+设置环境变量：
+```
+export PYTHONPATH = $PYTHONPATH:(hub的目录)
+```
 
 然后下载花朵图片集（目录可自行选择）：
 ```

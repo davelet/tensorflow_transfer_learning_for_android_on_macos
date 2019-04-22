@@ -72,5 +72,6 @@ python retrain.py --image_dir ~/flower_photos
 
 因为图片太少，训练会很快结束并且标明识别率高达100%。
 
+识别效果：[视频](/水果识别.mp4)
 
 

@@ -84,4 +84,7 @@ python retrain.py --image_dir ~/flower_photos
 
 识别效果：[视频](/水果识别.mp4)
 
+## 可能遇见的问题
+- [cannot import name 'image_module_info_pb2'](https://github.com/tensorflow/hub/issues/167#issuecomment-485686948)
 
+- [Missing implementation that supports: loader](https://github.com/tensorflow/hub/issues/212)

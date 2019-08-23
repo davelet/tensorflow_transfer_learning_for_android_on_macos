@@ -73,16 +73,16 @@ def load_labels(label_file):
 
 
 if __name__ == "__main__":
-  file_name = "tensorflow/examples/label_image/data/grace_hopper.jpg"
-  model_file = \
-    "tensorflow/examples/label_image/data/inception_v3_2016_08_28_frozen.pb"
-  label_file = "tensorflow/examples/label_image/data/imagenet_slim_labels.txt"
+  # file_name = "tensorflow/examples/label_image/data/grace_hopper.jpg"
+  # model_file = \
+  #   "tensorflow/examples/label_image/data/inception_v3_2016_08_28_frozen.pb"
+  # label_file = "tensorflow/examples/label_image/data/imagenet_slim_labels.txt"
   input_height = 299
   input_width = 299
   input_mean = 0
   input_std = 255
-  input_layer = "input"
-  output_layer = "InceptionV3/Predictions/Reshape_1"
+  # input_layer = "input"
+  # output_layer = "InceptionV3/Predictions/Reshape_1"
 
   parser = argparse.ArgumentParser()
   parser.add_argument("--image", help="image to be processed")
@@ -134,7 +134,9 @@ if __name__ == "__main__":
     })
   results = np.squeeze(results)
 
-  top_k = results.argsort()[-5:][::-1]
+  top_k = results.argsort()[-2:][::-1]
   labels = load_labels(label_file)
   for i in top_k:
-    print(labels[i], results[i])
+    score = results[i]
+    if (score > 0.5):
+      print(labels[i], results[i])

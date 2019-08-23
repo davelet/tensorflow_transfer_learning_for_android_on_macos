@@ -18,6 +18,7 @@ from __future__ import division
 from __future__ import print_function
 
 import argparse
+import os
 
 import numpy as np
 import tensorflow as tf
@@ -116,12 +117,6 @@ if __name__ == "__main__":
     output_layer = args.output_layer
 
   graph = load_graph(model_file)
-  t = read_tensor_from_image_file(
-      file_name,
-      input_height=input_height,
-      input_width=input_width,
-      input_mean=input_mean,
-      input_std=input_std)
 
   input_name = "import/" + input_layer
   output_name = "import/" + output_layer
@@ -129,14 +124,24 @@ if __name__ == "__main__":
   output_operation = graph.get_operation_by_name(output_name)
 
   with tf.Session(graph=graph) as sess:
-    results = sess.run(output_operation.outputs[0], {
-        input_operation.outputs[0]: t
-    })
-  results = np.squeeze(results)
+    for root, dirs,files in os.walk(file_name):
+      for file in files:
+        print('123123123', root, file)
+        image = os.path.join(root,file)
+        t = read_tensor_from_image_file(
+          image,
+          input_height=input_height,
+          input_width=input_width,
+          input_mean=input_mean,
+          input_std=input_std)
+        results = sess.run(output_operation.outputs[0], {
+            input_operation.outputs[0]: t
+        })
+        results = np.squeeze(results)
 
-  top_k = results.argsort()[-2:][::-1]
-  labels = load_labels(label_file)
-  for i in top_k:
-    score = results[i]
-    if (score > 0.5):
-      print(labels[i], results[i])
+        top_k = results.argsort()[-2:][::-1]
+        labels = load_labels(label_file)
+        for i in top_k:
+          score = results[i]
+          if (score > 0.5):
+            print(labels[i], results[i])
